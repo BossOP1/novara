@@ -1,0 +1,7 @@
+# Build output (Netlify rebuilds this)
+dist/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

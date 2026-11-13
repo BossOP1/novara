@@ -1,0 +1,28 @@
+# Netlify configuration for the Novara Healthcare homepage.
+# The build renders index.php to static HTML in dist/ (Netlify's build image includes PHP).
+
+[build]
+  command = "php build.php"
+  publish = "dist"
+
+# Old PHP URL → clean root URL
+[[redirects]]
+  from = "/index.php"
+  to = "/"
+  status = 301
+  force = true
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Always revalidate HTML so content updates show immediately
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
