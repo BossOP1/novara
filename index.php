@@ -85,6 +85,53 @@ $services = [
     ],
 ];
 
+/* Main navigation — mirrors the menu on novarahc.com */
+$nav = [
+    ['Locations', null, [
+        ['Houston / Sugar Land, TX', 'https://novarahc.com/locations/houston-sugar-land-tx/'],
+        ['Washington DC Metro', 'https://novarahc.com/locations/washington-dc-metro/'],
+    ]],
+    ['About', 'https://novarahc.com/about/', [
+        ['About Novara Healthcare', 'https://novarahc.com/about/'],
+        ['Reviews', '#reviews'],
+        ['FAQ', 'https://novarahc.com/faq/'],
+    ]],
+    ['Autism Therapy', 'https://novarahc.com/healthcare-services/autism-therapy/', [
+        ['Autism and MeRT', 'https://novarahc.com/healthcare-services/autism-therapy/'],
+        ['ABA And MeRT For Autism', 'https://novarahc.com/aba-and-mert-for-autism/'],
+        ['MeRT Plus Therapies', 'https://novarahc.com/healthcare-services/mert-plus-therapies/'],
+    ]],
+    ['Healthcare Services', 'https://novarahc.com/healthcare-services/', [
+        ['TMS Therapy', 'https://novarahc.com/healthcare-services/tms-therapy/'],
+        ['Magnetic eResonance Therapy', 'https://novarahc.com/healthcare-services/magnetic-eresonance-therapy/'],
+        ['Depression Therapy', 'https://novarahc.com/healthcare-services/depression-therapy/'],
+        ['PTSD Treatment with MeRT', 'https://novarahc.com/healthcare-services/ptsd-treatment-with-mert/'],
+    ]],
+    ['Research', 'https://novarahc.com/research/', [
+        ['Research Sources', 'https://novarahc.com/research/'],
+        ['Video Resources', 'https://novarahc.com/video-resources/'],
+    ]],
+    ['Resources', null, [
+        ['Apply for CareCredit', 'https://www.carecredit.com/apply/'],
+        ['Events & Specials', 'https://novarahc.com/events-specials/'],
+        ['Lodging & Attractions in Sugar Land Texas', 'https://novarahc.com/places-to-stay-and-things-to-see-and-do-in-sugar-land-texas/'],
+    ]],
+    ['Contact Us', null, [
+        ['Contact', 'https://novarahc.com/contact/'],
+        ['Referral Form', 'https://novarahc.com/contact/referral/'],
+    ]],
+    ['Log In', null, [
+        ['SimplePractice Patient Portal', 'https://novarahealthcare.clientsecure.me/'],
+        ['Treatment Portal', 'https://mymert.health/'],
+    ]],
+];
+
+/** External links (other domains) open in a new tab. */
+function link_attrs($href) {
+    $ext = preg_match('#^https?://#', $href) && !str_starts_with($href, 'https://novarahc.com');
+    return 'href="' . e($href) . '"' . ($ext ? ' target="_blank" rel="noopener"' : '');
+}
+
 $conditions = [
     ['Autism (ASD)', 'https://novarahc.com/healthcare-services/autism-therapy/'],
     ['Depression', 'https://novarahc.com/healthcare-services/depression-therapy/'],
@@ -290,89 +337,69 @@ $schema = [
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-brand-800 focus:shadow">Skip to content</a>
 
 <!-- ===================== Header ===================== -->
+<?php $chev = '<svg class="h-3.5 w-3.5 opacity-70 transition group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>'; ?>
 <header id="site-header" class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
-    <nav class="nav-shell mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-full py-2 pl-5 pr-2 sm:pl-6" aria-label="Main navigation">
+    <nav class="nav-shell mx-auto flex max-w-[88rem] items-center justify-between gap-3 rounded-full py-2 pl-5 pr-2 sm:pl-6" aria-label="Main navigation">
         <a href="<?= e($site['url']) ?>" class="flex shrink-0 items-center" aria-label="Novara Healthcare home">
             <img src="<?= e($site['logo']) ?>" alt="Novara Healthcare logo" width="300" height="233" class="nav-logo h-11 w-auto sm:h-12">
         </a>
 
-        <ul class="hidden items-center gap-0.5 text-[14.5px] font-semibold lg:flex">
-            <li><a href="https://novarahc.com/about/" class="nav-link rounded-full px-4 py-2.5">About</a></li>
+        <ul class="hidden items-center text-[14px] font-semibold xl:flex">
+            <?php foreach ($nav as $n => [$label, $href, $items]): $alignRight = $n >= count($nav) - 2; ?>
             <li class="group relative">
-                <a href="https://novarahc.com/healthcare-services/" class="nav-link flex items-center gap-1 rounded-full px-4 py-2.5">
-                    Treatments
-                    <svg class="h-3.5 w-3.5 opacity-70 transition group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-                </a>
-                <div class="invisible absolute left-1/2 top-full w-80 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <ul class="rounded-3xl bg-white p-2 text-brand-950 shadow-soft ring-1 ring-brand-900/5">
-                        <?php foreach ([
-                            ['Magnetic eResonance Therapy', 'EEG-guided, personalized MeRT', 'https://novarahc.com/healthcare-services/magnetic-eresonance-therapy/'],
-                            ['TMS Therapy', 'Non-invasive care for depression', 'https://novarahc.com/healthcare-services/tms-therapy/'],
-                            ['Depression Therapy', 'When other treatments haven’t helped', 'https://novarahc.com/healthcare-services/depression-therapy/'],
-                            ['PTSD Treatment with MeRT', 'Support for trauma recovery', 'https://novarahc.com/healthcare-services/ptsd-treatment-with-mert/'],
-                        ] as [$t, $d, $h]): ?>
-                        <li><a class="block rounded-2xl px-4 py-3 transition hover:bg-brand-50" href="<?= e($h) ?>"><span class="block font-bold"><?= e($t) ?></span><span class="block text-[13px] font-medium text-slate-500"><?= e($d) ?></span></a></li>
+                <?php if ($href): ?>
+                <a href="<?= e($href) ?>" class="nav-link flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2.5 2xl:px-3.5"><?= e($label) ?><?= $chev ?></a>
+                <?php else: ?>
+                <button type="button" class="nav-link flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2.5 2xl:px-3.5" aria-haspopup="true"><?= e($label) ?><?= $chev ?></button>
+                <?php endif; ?>
+                <div class="invisible absolute top-full w-72 translate-y-2 pt-4 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 <?= $alignRight ? 'right-0' : 'left-1/2 -translate-x-1/2' ?>">
+                    <ul class="rounded-3xl bg-white p-2 text-[15px] text-brand-950 shadow-soft ring-1 ring-brand-900/5">
+                        <?php foreach ($items as [$t, $h]): ?>
+                        <li><a class="flex items-center justify-between gap-3 rounded-2xl px-4 py-3 font-semibold transition hover:bg-brand-50 hover:text-brand-700" <?= link_attrs($h) ?>><?= e($t) ?><?php if (str_contains(link_attrs($h), '_blank')): ?><span class="text-xs text-slate-400" aria-hidden="true">↗</span><?php endif; ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
             </li>
-            <li class="group relative">
-                <a href="https://novarahc.com/healthcare-services/autism-therapy/" class="nav-link flex items-center gap-1 rounded-full px-4 py-2.5">
-                    Autism
-                    <svg class="h-3.5 w-3.5 opacity-70 transition group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-                </a>
-                <div class="invisible absolute left-1/2 top-full w-80 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <ul class="rounded-3xl bg-white p-2 text-brand-950 shadow-soft ring-1 ring-brand-900/5">
-                        <?php foreach ([
-                            ['Autism and MeRT', 'How MeRT supports children with ASD', 'https://novarahc.com/healthcare-services/autism-therapy/'],
-                            ['ABA and MeRT for Autism', 'Combining therapies for progress', 'https://novarahc.com/aba-and-mert-for-autism/'],
-                            ['MeRT Plus Therapies', 'Complementary, whole-child care', 'https://novarahc.com/healthcare-services/mert-plus-therapies/'],
-                        ] as [$t, $d, $h]): ?>
-                        <li><a class="block rounded-2xl px-4 py-3 transition hover:bg-brand-50" href="<?= e($h) ?>"><span class="block font-bold"><?= e($t) ?></span><span class="block text-[13px] font-medium text-slate-500"><?= e($d) ?></span></a></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="https://novarahc.com/research/" class="nav-link rounded-full px-4 py-2.5">Research</a></li>
-            <li><a href="https://novarahc.com/faq/" class="nav-link rounded-full px-4 py-2.5">FAQ</a></li>
-            <li><a href="https://novarahc.com/contact/" class="nav-link rounded-full px-4 py-2.5">Contact</a></li>
+            <?php endforeach; ?>
         </ul>
 
         <div class="flex items-center gap-1.5">
-            <a href="tel:<?= e($site['phone_raw']) ?>" class="nav-link hidden h-11 w-11 items-center justify-center rounded-full sm:flex" aria-label="Call <?= e($site['phone']) ?>" title="<?= e($site['phone']) ?>">
+            <a href="tel:<?= e($site['phone_raw']) ?>" class="nav-link hidden h-11 w-11 items-center justify-center rounded-full sm:flex xl:hidden 2xl:flex" aria-label="Call <?= e($site['phone']) ?>" title="<?= e($site['phone']) ?>">
                 <svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 00-1.173.417l-.97 1.293a1.125 1.125 0 01-1.21.38 12.035 12.035 0 01-7.143-7.143 1.125 1.125 0 01.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
             </a>
-            <a href="#contact" class="nav-cta group hidden items-center gap-2 rounded-full py-1.5 pl-5 pr-1.5 text-sm font-bold sm:inline-flex">
-                Book a consultation
+            <a href="#contact" class="nav-cta group hidden items-center gap-2 whitespace-nowrap rounded-full py-1.5 pl-5 pr-1.5 text-sm font-bold sm:inline-flex">
+                <span class="xl:hidden 2xl:inline">Book a consultation</span><span class="hidden xl:inline 2xl:hidden">Book now</span>
                 <span class="nav-cta-dot flex h-8 w-8 items-center justify-center rounded-full transition group-hover:translate-x-0.5">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/></svg>
                 </span>
             </a>
-            <button id="menu-btn" type="button" class="nav-link inline-flex h-11 w-11 items-center justify-center rounded-full lg:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+            <button id="menu-btn" type="button" class="nav-link inline-flex h-11 w-11 items-center justify-center rounded-full xl:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 8h16M4 16h16"/></svg>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="mx-auto mt-2 hidden max-w-7xl rounded-3xl bg-white p-2 shadow-soft ring-1 ring-brand-900/5 lg:hidden">
+    <!-- Mobile / tablet menu -->
+    <div id="mobile-menu" class="mx-auto mt-2 hidden max-h-[calc(100svh-6rem)] max-w-[88rem] overflow-y-auto rounded-3xl bg-white p-2 shadow-soft ring-1 ring-brand-900/5 xl:hidden">
         <ul class="grid gap-0.5 text-base font-semibold text-brand-950">
-            <?php foreach ([
-                ['About', 'https://novarahc.com/about/'],
-                ['MeRT Therapy', 'https://novarahc.com/healthcare-services/magnetic-eresonance-therapy/'],
-                ['TMS Therapy', 'https://novarahc.com/healthcare-services/tms-therapy/'],
-                ['Autism Therapy', 'https://novarahc.com/healthcare-services/autism-therapy/'],
-                ['Depression Therapy', 'https://novarahc.com/healthcare-services/depression-therapy/'],
-                ['PTSD Treatment', 'https://novarahc.com/healthcare-services/ptsd-treatment-with-mert/'],
-                ['Research', 'https://novarahc.com/research/'],
-                ['FAQ', 'https://novarahc.com/faq/'],
-                ['Contact', 'https://novarahc.com/contact/'],
-            ] as [$t, $h]): ?>
-            <li><a class="block rounded-2xl px-4 py-3 hover:bg-brand-50" href="<?= e($h) ?>"><?= e($t) ?></a></li>
+            <?php foreach ($nav as [$label, $href, $items]): ?>
+            <li>
+                <details class="group">
+                    <summary class="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 hover:bg-brand-50">
+                        <?= e($label) ?>
+                        <svg class="h-4 w-4 text-slate-400 transition group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                    </summary>
+                    <ul class="mb-2 ml-4 border-l border-brand-100 pl-2 text-[15px] font-medium text-slate-600">
+                        <?php foreach ($items as [$t, $h]): ?>
+                        <li><a class="block rounded-xl px-4 py-2.5 hover:bg-brand-50 hover:text-brand-800" <?= link_attrs($h) ?>><?= e($t) ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </details>
+            </li>
             <?php endforeach; ?>
         </ul>
         <div class="mt-2 grid grid-cols-2 gap-2 border-t border-brand-100 p-2 pt-4">
-            <a href="tel:<?= e($site['phone_raw']) ?>" class="rounded-full border border-brand-200 py-3 text-center text-sm font-bold text-brand-800">Call us</a>
+            <a href="tel:<?= e($site['phone_raw']) ?>" class="rounded-full border border-brand-200 py-3 text-center text-sm font-bold text-brand-800">Call <?= e($site['phone']) ?></a>
             <a href="#contact" class="rounded-full bg-brand-700 py-3 text-center text-sm font-bold text-white">Book a consultation</a>
         </div>
     </div>
