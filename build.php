@@ -59,18 +59,42 @@ foreach ($pages as $src => $dest) {
     printf("✓ %s → dist/%s (%s KB)\n", $src, $dest, number_format(strlen($html) / 1024, 1));
 }
 
-/* ---------- Static assets (optional) ---------- */
-// Anything placed in /public is copied as-is to the site root (images, favicons, etc.).
-$public = $root . '/public';
-if (is_dir($public)) {
+/* ---------- Static assets ---------- */
+function copy_dir(string $from, string $to): int {
+    $count = 0;
+    if (!is_dir($to)) mkdir($to, 0755, true);
     foreach (new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($public, FilesystemIterator::SKIP_DOTS),
+        new RecursiveDirectoryIterator($from, FilesystemIterator::SKIP_DOTS),
         RecursiveIteratorIterator::SELF_FIRST
     ) as $item) {
-        $target = $dist . '/' . substr($item->getPathname(), strlen($public) + 1);
-        $item->isDir() ? (is_dir($target) || mkdir($target, 0755, true)) : copy($item->getPathname(), $target);
+        if ($item->getFilename() === '.DS_Store') continue;
+        $target = $to . '/' . substr($item->getPathname(), strlen($from) + 1);
+        if ($item->isDir()) {
+            is_dir($target) || mkdir($target, 0755, true);
+        } else {
+            copy($item->getPathname(), $target);
+            $count++;
+        }
     }
-    echo "✓ Copied /public assets\n";
+    return $count;
+}
+
+// /assets → dist/assets (hero video, poster, images referenced by the page)
+if (is_dir($root . '/assets')) {
+    printf("✓ Copied %d file(s) from /assets\n", copy_dir($root . '/assets', $dist . '/assets'));
+}
+// /public → site root (favicons, verification files, etc.)
+if (is_dir($root . '/public')) {
+    printf("✓ Copied %d file(s) from /public\n", copy_dir($root . '/public', $dist));
+}
+
+// Fail the build if a local asset the page references is missing
+preg_match_all('#(?:src|poster|data-src|href)="(assets/[^"]+)"#', file_get_contents($dist . '/index.html'), $m);
+foreach (array_unique($m[1]) as $asset) {
+    if (!is_file($dist . '/' . $asset)) {
+        fwrite(STDERR, "✗ Missing asset referenced by the page: {$asset}\n");
+        exit(1);
+    }
 }
 
 /* ---------- robots.txt ---------- */

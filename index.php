@@ -258,7 +258,7 @@ $schema = [
 
     <link rel="icon" href="<?= e($site['favicon']) ?>" sizes="192x192">
     <link rel="apple-touch-icon" href="https://novarahc.com/wp-content/uploads/2026/03/cropped-favicon1-180x180.png">
-    <link rel="preload" as="image" href="https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1536x961.jpg" imagesrcset="https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-768x480.jpg 768w, https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1024x640.jpg 1024w, https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1536x961.jpg 1536w" imagesizes="100vw">
+    <link rel="preload" as="image" href="assets/bg-video/poster.jpg" fetchpriority="high">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -409,15 +409,18 @@ $schema = [
 
 <!-- ===================== Hero ===================== -->
 <section class="relative isolate overflow-hidden bg-brand-950 pt-24 sm:pt-28" aria-labelledby="hero-title">
-    <!-- Background photo -->
-    <img
-        src="https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1536x961.jpg"
-        srcset="https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-768x480.jpg 768w, https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1024x640.jpg 1024w, https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1536x961.jpg 1536w"
-        sizes="100vw"
-        alt="Patient receiving personalized MeRT / TMS brain stimulation with a Novara Healthcare clinician"
-        width="1536" height="961"
-        fetchpriority="high" decoding="async"
-        class="absolute inset-0 -z-20 h-full w-full object-cover object-[62%_center]">
+    <!-- Background video: lake with fountain (Pexels, free license). Loaded by script on larger screens only;
+         phones, reduced-motion and data-saver visitors see the poster frame instead. -->
+    <video id="hero-video"
+        class="absolute inset-0 -z-20 h-full w-full object-cover"
+        poster="assets/bg-video/poster.jpg"
+        data-src="assets/bg-video/1164883-hd_1920_1080_30fps.mp4"
+        muted loop playsinline preload="none"
+        aria-hidden="true" tabindex="-1"></video>
+    <button id="hero-video-toggle" type="button" class="absolute right-4 top-24 z-10 hidden h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/25 backdrop-blur transition hover:bg-white/20 sm:right-6 sm:top-28" aria-label="Pause background video">
+        <svg data-icon="pause" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+        <svg data-icon="play" class="ml-0.5 hidden h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 001.5.86l11-6.86a1 1 0 000-1.72l-11-6.86A1 1 0 008 5.14z"/></svg>
+    </button>
     <!-- Text overlay -->
     <div class="absolute inset-0 -z-10 bg-brand-950/[.72]" aria-hidden="true"></div>
 
@@ -1018,6 +1021,28 @@ $schema = [
     window.addEventListener('scroll', onScroll, { passive: true });
     btn.addEventListener('click', onScroll);
     onScroll();
+
+    // Hero background video: only load on larger screens, never for reduced-motion or data-saver visitors
+    const heroVideo = document.getElementById('hero-video');
+    const heroToggle = document.getElementById('hero-video-toggle');
+    if (heroVideo) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const saveData = navigator.connection && navigator.connection.saveData;
+        const wide = window.matchMedia('(min-width: 768px)').matches;
+        if (!reduceMotion && !saveData && wide) {
+            heroVideo.src = heroVideo.dataset.src;
+            heroVideo.play().then(() => heroToggle.classList.replace('hidden', 'flex')).catch(() => {});
+            const setIcon = paused => {
+                heroToggle.querySelector('[data-icon="pause"]').classList.toggle('hidden', paused);
+                heroToggle.querySelector('[data-icon="play"]').classList.toggle('hidden', !paused);
+                heroToggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+            };
+            heroToggle.addEventListener('click', () => {
+                heroVideo.paused ? heroVideo.play() : heroVideo.pause();
+                setIcon(heroVideo.paused);
+            });
+        }
+    }
 
     // Netlify Forms redirect back here with ?sent=1 — show the thank-you message
     const formOk = document.getElementById('form-success');

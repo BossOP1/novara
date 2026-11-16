@@ -21,6 +21,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+# Cache the hero video and other static assets for a week
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # Always revalidate HTML so content updates show immediately
 [[headers]]
   for = "/*.html"
