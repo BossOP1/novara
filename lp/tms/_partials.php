@@ -7,11 +7,14 @@
  */
 
 $isStatic = defined('STATIC_BUILD') && STATIC_BUILD;
+// Where the page lives on the site. '/lp/tms/' inside the main site; build-lp.php
+// sets '/' to publish the landing page as its own standalone Netlify site.
+$lpBase = defined('LP_BASE') ? LP_BASE : '/lp/tms/';
 
 $lp = [
     'name'      => 'Novara Healthcare',
     'url'       => 'https://novarahc.com/',
-    'lp_url'    => 'https://novarahc.com/lp/tms/',
+    'lp_url'    => defined('LP_URL') ? LP_URL : 'https://novarahc.com/lp/tms/',
     'email'     => 'info@novarahealthtx.com',
     'logo'      => 'https://novarahc.com/wp-content/uploads/2026/03/Novara-Healthcare-Logo.png',
     'favicon'   => 'https://novarahc.com/wp-content/uploads/2026/03/cropped-favicon1-192x192.png',
@@ -19,9 +22,9 @@ $lp = [
     'city'      => 'Sugar Land, TX 77479',
     'hours'     => 'Mon–Fri, 9:00am–5:00pm',
     'maps'      => 'https://www.google.com/maps/search/?api=1&query=Novara+Healthcare+5501+Cabrera+Dr+Suite+503+Sugar+Land+TX+77479',
-    'img'       => '/lp/tms/img/',
-    // Static (Netlify) build posts to Netlify Forms and lands on /lp/tms/thank-you/.
-    'thanks'    => $isStatic ? '/lp/tms/thank-you/' : 'thank-you.php',
+    'img'       => $lpBase . 'img/',
+    // Static (Netlify) build posts to Netlify Forms and lands on <base>thank-you/.
+    'thanks'    => $isStatic ? $lpBase . 'thank-you/' : 'thank-you.php',
     // Google Tag Manager container ID, e.g. 'GTM-ABC1234'. Leave empty for no tracking.
     // When set, GTM loads with Consent Mode v2 (everything denied until the visitor
     // accepts) and the cookie banner appears. Use conversion tracking only: Google
@@ -43,7 +46,7 @@ function lp_head(array $lp, string $title, string $desc, string $extraHead = '')
     <meta name="description" content="<?= e($desc) ?>">
     <!-- Paid-traffic landing page: kept out of search so it doesn't compete with the main site -->
     <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="<?= e($lp['lp_url']) ?>">
+    <?php if ($lp['lp_url'] !== ''): ?><link rel="canonical" href="<?= e($lp['lp_url']) ?>"><?php endif; ?>
     <meta name="theme-color" content="#0a2b55">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<?= e($title) ?>">

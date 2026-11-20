@@ -5,3 +5,7 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+
+# Standalone landing page build
+dist-lp/
+dist-lp.zip
