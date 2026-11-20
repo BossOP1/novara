@@ -12,8 +12,8 @@ $site = [
     'email'     => 'info@novarahealthtx.com',
     'logo'      => 'https://novarahc.com/wp-content/uploads/2026/03/Novara-Healthcare-Logo.png',
     'favicon'   => 'https://novarahc.com/wp-content/uploads/2026/03/cropped-favicon1-192x192.png',
-    'title'     => 'MeRT & TMS Treatment in Houston & Sugar Land, TX | Novara Healthcare',
-    'desc'      => 'Novara Healthcare offers personalized MeRT and TMS brain treatment for autism, depression, PTSD and more in Sugar Land (Houston), TX and the Washington DC Metro area. Book a free consultation.',
+    'title'     => 'TMS & MeRT Therapy in Houston & Sugar Land, TX | Novara Healthcare',
+    'desc'      => 'Non-invasive TMS therapy for depression, plus EEG-guided MeRT for autism, PTSD and more, at Novara Healthcare in Sugar Land (Houston), TX and the Washington DC Metro. Book a free consultation.',
 ];
 
 /* Set by build.php when rendering the static site for Netlify. */
@@ -46,7 +46,7 @@ function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 function section_label($left, $right = '', $dark = false) {
     $line = $dark ? 'border-white/10 text-white/50' : 'border-brand-900/10 text-slate-500';
     $dot  = $dark ? 'bg-teal-300' : 'bg-teal-500';
-    echo '<div class="reveal flex flex-wrap items-center justify-between gap-4 border-b pb-6 text-[11px] font-bold uppercase tracking-[0.24em] ' . $line . '">'
+    echo '<div class="reveal label-row flex flex-wrap items-center justify-between gap-4 pb-6 text-[11px] font-bold uppercase tracking-[0.24em] ' . $line . '">'
        . '<p class="flex items-center gap-3"><span class="h-2 w-2 rounded-full ' . $dot . '" aria-hidden="true"></span>' . e($left) . '</p>'
        . ($right !== '' ? '<p>' . e($right) . '</p>' : '')
        . '</div>';
@@ -54,24 +54,24 @@ function section_label($left, $right = '', $dark = false) {
 
 $services = [
     [
+        'title'  => 'Transcranial Magnetic Stimulation (TMS)',
+        'text'   => 'Focused magnetic pulses to the brain areas linked to mood, for depression that hasn’t improved with medication or therapy. Non-invasive, with no sedation.',
+        'img'    => 'https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1024x640.jpg',
+        'srcset' => 'https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-768x480.jpg 768w, https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1024x640.jpg 1024w, https://novarahc.com/wp-content/uploads/2026/06/TMS-and-MeRt-by-apollo-1536x961.jpg 1536w',
+        'pos'    => '62% center',
+        'alt'    => 'Patient receiving TMS therapy with a clinician at Novara Healthcare',
+        'href'   => 'https://novarahc.com/healthcare-services/tms-therapy/',
+        'tags'   => ['Depression', 'No sedation', 'FDA-cleared'],
+    ],
+    [
         'title'  => 'Magnetic eResonance Therapy (MeRT)',
-        'text'   => 'An advanced, non-invasive treatment that uses your EEG to deliver precisely tuned magnetic pulses to the areas of the brain that need support.',
+        'text'   => 'An evolution of TMS that uses your EEG to deliver precisely tuned magnetic pulses to the areas of the brain that need support.',
         'img'    => 'https://novarahc.com/wp-content/uploads/2026/06/TMS-Therapy-1024x683.jpg',
         'srcset' => 'https://novarahc.com/wp-content/uploads/2026/06/TMS-Therapy-768x512.jpg 768w, https://novarahc.com/wp-content/uploads/2026/06/TMS-Therapy-1024x683.jpg 1024w, https://novarahc.com/wp-content/uploads/2026/06/TMS-Therapy.jpg 1536w',
         'pos'    => '35% center',
         'alt'    => 'Clinician fitting an EEG cap to map brainwave activity before MeRT treatment',
         'href'   => 'https://novarahc.com/healthcare-services/magnetic-eresonance-therapy/',
         'tags'   => ['Autism', 'Depression', 'PTSD', 'TBI'],
-    ],
-    [
-        'title'  => 'Transcranial Magnetic Stimulation (TMS)',
-        'text'   => 'A non-invasive approach for depression that uses magnetic fields to stimulate nerve cells in the brain linked to mood.',
-        'img'    => 'https://novarahc.com/wp-content/uploads/2026/04/Depression-Therapy-1024x683.jpg',
-        'srcset' => 'https://novarahc.com/wp-content/uploads/2026/04/Depression-Therapy-768x512.jpg 768w, https://novarahc.com/wp-content/uploads/2026/04/Depression-Therapy-1024x683.jpg 1024w',
-        'pos'    => 'center',
-        'alt'    => 'Patient speaking with a clinician about TMS therapy for depression',
-        'href'   => 'https://novarahc.com/healthcare-services/tms-therapy/',
-        'tags'   => ['Depression'],
     ],
     [
         'title'  => 'Autism Spectrum Disorder (ASD) Clinic',
@@ -156,6 +156,7 @@ $reviews = [
 ];
 
 $faqs = [
+    ['What is TMS therapy, and who is it for?', 'TMS (Transcranial Magnetic Stimulation) is a non-invasive treatment that delivers focused magnetic pulses to areas of the brain linked to mood, such as the prefrontal cortex. It is often considered by people whose depression has not improved with medication or talk therapy. Sessions last about 20–40 minutes, typically five days a week for several weeks, and no sedation is needed. rTMS is FDA-cleared for major depressive disorder and OCD.'],
     ['What conditions does MeRT treat?', 'MeRT (Magnetic e-Resonance Therapy) has been used to support patients experiencing treatment-resistant depression, anxiety, PTSD, traumatic brain injury (TBI), autism spectrum disorder, and sleep disorders. It uses your brain’s own unique EEG patterns to deliver personalized, targeted magnetic stimulation — different from standard TMS protocols that use a one-size-fits-all approach.'],
     ['How do I know if I’m a candidate?', 'Candidacy is determined through a simple, non-invasive evaluation that includes a qEEG brain map and an EKG. These tests help our clinical team identify irregular brainwave patterns and assess whether MeRT or TMS may benefit you. Certain medical implants (such as cochlear implants or metal in the skull) may affect eligibility.'],
     ['Is the treatment painful or time-consuming?', 'MeRT and TMS sessions are non-invasive and typically well-tolerated. Most patients describe a gentle tapping or clicking near the scalp. Each session lasts approximately 30–45 minutes, generally 5 days a week over several weeks. No anesthesia or recovery time is needed.'],
@@ -178,8 +179,8 @@ $schema = [
             'email'       => $site['email'],
             'medicalSpecialty' => ['Neurologic', 'Psychiatric'],
             'availableService' => [
+                ['@type' => 'MedicalTherapy', 'name' => 'Transcranial Magnetic Stimulation (TMS)', 'description' => 'Non-invasive magnetic stimulation of the brain areas linked to mood, for depression that has not responded to medication or therapy.'],
                 ['@type' => 'MedicalTherapy', 'name' => 'Magnetic eResonance Therapy (MeRT)'],
-                ['@type' => 'MedicalTherapy', 'name' => 'Transcranial Magnetic Stimulation (TMS)'],
             ],
             'address' => [
                 '@type' => 'PostalAddress',
@@ -300,7 +301,7 @@ $schema = [
         details > summary::-webkit-details-marker { display: none; }
         details[open] .faq-icon { transform: rotate(45deg); }
         /* Navbar: glass over hero, solid white once scrolled */
-        .nav-shell { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transition: background-color .35s ease, box-shadow .35s ease; }
+        .nav-shell { background: rgba(6,26,53,.32); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transition: background-color .35s ease, box-shadow .35s ease; }
         .nav-logo { filter: brightness(0) invert(1); transition: filter .35s ease; }
         .nav-link { color: #fff; transition: background-color .2s ease, color .35s ease; }
         .nav-link:hover { background: rgba(255,255,255,.14); }
@@ -321,10 +322,37 @@ $schema = [
         @media (min-width: 640px) { .rv-pad { padding-inline: max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem)); scroll-padding-inline: max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem)); } }
         .eeg-path { stroke-dasharray: 2600; stroke-dashoffset: 2600; animation: eegDraw 7s ease-in-out infinite; }
         @keyframes eegDraw { 0% { stroke-dashoffset: 2600; } 55% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -2600; } }
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+        /* Scroll animations: fade-up by default; data-anim picks a variant; [data-stagger] staggers children */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+        .reveal[data-anim="left"] { transform: translateX(-36px); }
+        .reveal[data-anim="right"] { transform: translateX(36px); }
+        .reveal[data-anim="zoom"] { transform: scale(.94); }
         .reveal.is-visible { opacity: 1; transform: none; }
+        /* Image wipe: a cover in the section's colour slides away while the photo eases out of a slight zoom */
+        .reveal[data-anim="wipe"] { opacity: 1; transform: none; position: relative; }
+        .reveal[data-anim="wipe"]::after { content: ""; position: absolute; inset: -1px; z-index: 5; pointer-events: none; border-radius: inherit; background: var(--wipe, #ffffff); transform-origin: top; transition: transform 1.15s cubic-bezier(.7,0,.2,1); transition-delay: inherit; }
+        .reveal[data-anim="wipe"].is-visible::after { transform: scaleY(0); }
+        .reveal[data-anim="wipe"] img { scale: 1.12; transition: scale 1.8s cubic-bezier(.2,.7,.2,1), transform 1.2s ease-out; }
+        .reveal[data-anim="wipe"].is-visible img { scale: 1; }
+        .label-row { position: relative; }
+        .label-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: currentColor; opacity: .35; transform: scaleX(0); transform-origin: left; transition: transform 1.4s cubic-bezier(.7,0,.2,1) .15s; }
+        .label-row.is-visible::after { transform: scaleX(1); }
+        /* TMS illustration */
+        .tms-ring { transform-box: fill-box; transform-origin: center; opacity: 0; animation: tmsRing 2.6s cubic-bezier(.2,.6,.3,1) infinite; }
+        .tms-ring.r2 { animation-delay: .85s; }
+        .tms-ring.r3 { animation-delay: 1.7s; }
+        @keyframes tmsRing { 0% { opacity: .95; transform: translateY(0) scale(.55); } 100% { opacity: 0; transform: translateY(46px) scale(1.45); } }
+        .tms-target { transform-box: fill-box; transform-origin: center; animation: tmsTarget 2.6s ease-in-out infinite; }
+        @keyframes tmsTarget { 0%, 100% { opacity: .45; transform: scale(.85); } 45% { opacity: 1; transform: scale(1.15); } }
+        .tms-coil { animation: tmsCoil 5s ease-in-out infinite; }
+        @keyframes tmsCoil { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1; transform: none; transition: none; }
+            .reveal, .reveal[data-anim] { opacity: 1; transform: none; transition: none; }
+            .reveal[data-anim="wipe"]::after { display: none; }
+            .reveal[data-anim="wipe"] img { scale: 1; }
+            .label-row::after { transform: none; transition: none; }
+            .tms-ring { animation: none; opacity: .5; }
+            .tms-target, .tms-coil { animation: none; }
             .hero-in { opacity: 1; animation: none; }
             .eeg-path { animation: none; stroke-dashoffset: 0; }
         }
@@ -412,7 +440,7 @@ $schema = [
     <!-- Background video: lake with fountain (Pexels, free license). Loaded by script on larger screens only;
          phones, reduced-motion and data-saver visitors see the poster frame instead. -->
     <video id="hero-video"
-        class="absolute inset-0 -z-20 h-full w-full object-cover"
+        class="absolute inset-0 -z-20 h-full w-full object-cover brightness-110 saturate-[1.25] contrast-[1.05]"
         poster="assets/bg-video/poster.jpg"
         data-src="assets/bg-video/1164883-hd_1920_1080_30fps.mp4"
         muted loop playsinline preload="none"
@@ -422,15 +450,16 @@ $schema = [
         <svg data-icon="play" class="ml-0.5 hidden h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 001.5.86l11-6.86a1 1 0 000-1.72l-11-6.86A1 1 0 008 5.14z"/></svg>
     </button>
     <!-- Text overlay -->
-    <div class="absolute inset-0 -z-10 bg-brand-950/[.72]" aria-hidden="true"></div>
+    <div class="absolute inset-0 -z-10 bg-brand-950/45 lg:bg-transparent lg:bg-gradient-to-r lg:from-brand-950/75 lg:via-brand-950/30 lg:to-transparent" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-gradient-to-t from-brand-950/60 to-transparent" aria-hidden="true"></div>
 
     <div class="mx-auto flex min-h-[calc(100svh-6rem)] max-w-7xl flex-col px-4 sm:min-h-[calc(100svh-7rem)] sm:px-6 lg:min-h-[740px]">
         <div class="flex flex-1 items-center py-12 lg:py-16">
             <div class="max-w-2xl">
-                <h1 id="hero-title">
+                <h1 id="hero-title" class="[text-shadow:0_2px_30px_rgba(6,26,53,.35)]">
                     <span class="hero-in flex items-center gap-4 text-xs font-bold uppercase tracking-[0.28em] text-teal-300 sm:text-sm">
                         <span class="h-px w-10 bg-teal-300" aria-hidden="true"></span>
-                        MeRT &amp; TMS Therapy · Sugar Land &amp; Houston, TX
+                        TMS &amp; MeRT Therapy · Sugar Land &amp; Houston, TX
                     </span>
                     <span class="hero-in mt-7 block font-display text-[2.75rem] font-normal leading-[1.02] tracking-[-0.02em] text-white [animation-delay:.1s] sm:text-6xl lg:text-[5.25rem]">
                         Every brain has<br class="hidden sm:block"> its own rhythm.<br>
@@ -438,8 +467,8 @@ $schema = [
                     </span>
                 </h1>
 
-                <p class="hero-in mt-8 max-w-lg text-lg leading-relaxed text-white/85 [animation-delay:.2s]">
-                    Using a qEEG brain map, we find the exact areas that aren’t connecting as they should — then gently stimulate them with precisely targeted magnetic waves. Care for autism, depression, PTSD and more, built around one person: you.
+                <p class="hero-in mt-8 max-w-lg text-lg leading-relaxed text-white/90 [animation-delay:.2s] [text-shadow:0_1px_16px_rgba(6,26,53,.45)]">
+                    Non-invasive TMS therapy for depression, and EEG-guided MeRT for autism, PTSD and more. Gentle magnetic pulses help the brain areas that aren’t connecting as they should.
                 </p>
 
                 <div class="hero-in mt-10 flex flex-col gap-4 sm:flex-row sm:items-center [animation-delay:.3s]">
@@ -449,8 +478,8 @@ $schema = [
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/></svg>
                         </span>
                     </a>
-                    <a href="tel:<?= e($site['phone_raw']) ?>" class="inline-flex items-center justify-center gap-2 px-2 py-3 text-base font-semibold text-white underline decoration-white/30 underline-offset-[6px] transition hover:decoration-teal-300">
-                        or call <?= e($site['phone']) ?>
+                    <a href="#tms" class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-4 text-base font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-white/20">
+                        Explore TMS therapy
                     </a>
                 </div>
 
@@ -488,12 +517,159 @@ $schema = [
     </div>
 </section>
 
+<!-- ===================== TMS Therapy ===================== -->
+<section id="tms" class="relative overflow-hidden bg-white py-16 lg:py-24" aria-labelledby="tms-title">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <?php section_label('TMS Therapy', 'Transcranial Magnetic Stimulation · Houston'); ?>
+
+        <div class="mt-12 grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+            <!-- Copy -->
+            <div class="lg:col-span-6">
+                <h2 id="tms-title" class="reveal text-balance font-display text-[2.6rem] font-normal leading-[1.04] tracking-[-0.02em] text-brand-950 sm:text-6xl">
+                    A new path for depression when medication <em class="text-brand-600">hasn’t helped.</em>
+                </h2>
+                <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+                    <strong class="font-semibold text-brand-950">Transcranial Magnetic Stimulation (TMS)</strong> delivers focused magnetic pulses to the areas of the brain linked to mood, such as the prefrontal cortex. The pulses encourage brain cells to communicate and form new connections, a process called neuroplasticity. It’s non-invasive and needs no sedation.
+                </p>
+
+                <p class="reveal mt-8 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-500">TMS may be right for you if</p>
+                <ul class="mt-4 space-y-3" data-stagger>
+                    <?php foreach ([
+                        'Your depression hasn’t improved with medication or talk therapy',
+                        'Antidepressant side effects have been hard to live with',
+                        'You want a drug-free option with no sedation or recovery time',
+                    ] as $item): ?>
+                    <li class="reveal flex gap-3" data-anim="left">
+                        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-700">
+                            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                        </span>
+                        <span class="text-brand-950"><?= e($item) ?></span>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+
+                <div class="reveal mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <a href="#contact" class="group inline-flex items-center justify-center gap-3 rounded-full bg-brand-700 py-2 pl-7 pr-2 font-bold text-white shadow-lg shadow-brand-700/25 transition hover:bg-brand-800">
+                        Ask if TMS is right for you
+                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 transition group-hover:translate-x-0.5"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/></svg></span>
+                    </a>
+                    <a href="https://novarahc.com/healthcare-services/tms-therapy/" class="inline-flex items-center justify-center px-4 py-3 font-bold text-brand-700 underline decoration-teal-300 decoration-2 underline-offset-8 hover:text-brand-900">How TMS works</a>
+                </div>
+            </div>
+
+            <!-- Animated TMS illustration -->
+            <div class="lg:col-span-6">
+                <div class="reveal relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-800 via-brand-900 to-brand-950 p-6 shadow-soft sm:p-10" data-anim="zoom" data-parallax="0.06">
+                    <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-teal-400/20 blur-3xl" aria-hidden="true"></div>
+                    <svg class="relative mx-auto block w-full max-w-[420px]" viewBox="0 0 440 420" fill="none" role="img" aria-labelledby="tms-svg-title">
+                        <title id="tms-svg-title">A TMS coil above the head sends magnetic pulses to the brain’s mood centers</title>
+                        <defs>
+                            <radialGradient id="tmsGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#6cd9c8" stop-opacity=".95"/><stop offset="1" stop-color="#6cd9c8" stop-opacity="0"/></radialGradient>
+                            <linearGradient id="tmsHead" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".12"/><stop offset="1" stop-color="#ffffff" stop-opacity=".02"/></linearGradient>
+                            <linearGradient id="tmsCoil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe2f6"/></linearGradient>
+                        </defs>
+                        <!-- Head -->
+                        <circle cx="220" cy="262" r="150" fill="url(#tmsHead)" stroke="#ffffff" stroke-opacity=".22" stroke-width="2"/>
+                        <!-- Brain (side-on outline with folds) -->
+                        <path d="M146 286c-24 0-34-22-22-40-10-22 8-46 32-40 4-24 32-34 50-22 12-14 40-14 52 0 18-12 46-4 50 20 24-4 40 20 30 40 14 18 2 42-20 42-2 22-26 32-44 22-12 14-38 16-50 2-14 14-40 12-48-6-16 8-34-2-30-18z" fill="#ffffff" fill-opacity=".05" stroke="#a2eadd" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
+                        <g stroke="#a2eadd" stroke-opacity=".35" stroke-width="2" stroke-linecap="round" fill="none">
+                            <path d="M222 180c-8 26 6 52-2 80s6 38 0 52"/>
+                            <path d="M150 238q10-14 22-2t24-4"/>
+                            <path d="M160 272q14 10 26-2t20 6"/>
+                            <path d="M240 214q8 14 20 4t22 6"/>
+                            <path d="M246 252q10-12 24-2t20-6"/>
+                            <path d="M236 290q12 8 22-4"/>
+                        </g>
+                        <!-- Target: prefrontal / mood region -->
+                        <circle class="tms-target" cx="220" cy="196" r="42" fill="url(#tmsGlow)"/>
+                        <circle cx="220" cy="196" r="7" fill="#6cd9c8"/>
+                        <!-- Magnetic field pulses -->
+                        <g stroke="#6cd9c8" stroke-width="2.5">
+                            <ellipse class="tms-ring" cx="220" cy="140" rx="70" ry="16"/>
+                            <ellipse class="tms-ring r2" cx="220" cy="140" rx="70" ry="16"/>
+                            <ellipse class="tms-ring r3" cx="220" cy="140" rx="70" ry="16"/>
+                        </g>
+                        <!-- Figure-8 TMS coil -->
+                        <g class="tms-coil">
+                            <rect x="208" y="14" width="24" height="56" rx="12" fill="url(#tmsCoil)"/>
+                            <circle cx="178" cy="92" r="40" fill="url(#tmsCoil)"/>
+                            <circle cx="262" cy="92" r="40" fill="url(#tmsCoil)"/>
+                            <circle cx="178" cy="92" r="24" stroke="#0f4c9a" stroke-opacity=".35" stroke-width="3"/>
+                            <circle cx="262" cy="92" r="24" stroke="#0f4c9a" stroke-opacity=".35" stroke-width="3"/>
+                            <circle cx="178" cy="92" r="11" stroke="#0f4c9a" stroke-opacity=".25" stroke-width="3"/>
+                            <circle cx="262" cy="92" r="11" stroke="#0f4c9a" stroke-opacity=".25" stroke-width="3"/>
+                        </g>
+                    </svg>
+                    <!-- Labels -->
+                    <div class="absolute left-5 top-5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur sm:left-8 sm:top-8">Figure-8 TMS coil</div>
+                    <div class="relative mt-4 grid grid-cols-2 gap-3 text-white">
+                        <div class="rounded-2xl bg-white/[.07] p-4 ring-1 ring-white/10">
+                            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-300">Target</p>
+                            <p class="mt-1 font-display text-lg leading-snug">Prefrontal cortex, linked to mood</p>
+                        </div>
+                        <div class="rounded-2xl bg-white/[.07] p-4 ring-1 ring-white/10">
+                            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-300">You’ll feel</p>
+                            <p class="mt-1 font-display text-lg leading-snug">A gentle tapping on the scalp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key facts -->
+        <dl class="mt-16 grid gap-px overflow-hidden rounded-[2rem] bg-brand-900/10 ring-1 ring-brand-900/10 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
+            <?php foreach ([
+                ['20–40 min', 'per session, seated and awake'],
+                ['5 days', 'a week, for several weeks'],
+                ['No sedation', 'no anesthesia or recovery time needed'],
+                ['FDA-cleared', 'rTMS for major depression and OCD'],
+            ] as [$big, $small]): ?>
+            <div class="reveal bg-white p-7 sm:p-8">
+                <dt class="font-display text-3xl text-brand-950 sm:text-4xl"><?= e($big) ?></dt>
+                <dd class="mt-2 text-[15px] leading-snug text-slate-500"><?= e($small) ?></dd>
+            </div>
+            <?php endforeach; ?>
+        </dl>
+
+        <!-- TMS vs MeRT + research -->
+        <div class="mt-6 grid gap-6 lg:grid-cols-12">
+            <div class="reveal rounded-[2rem] bg-sand-50 p-7 ring-1 ring-brand-900/5 sm:p-10 lg:col-span-7" data-anim="left">
+                <h3 class="font-display text-2xl text-brand-950 sm:text-3xl">TMS or MeRT?</h3>
+                <div class="mt-6 grid gap-6 sm:grid-cols-2">
+                    <div class="border-l-2 border-brand-600 pl-5">
+                        <p class="font-bold text-brand-950">TMS</p>
+                        <p class="mt-2 leading-relaxed text-slate-600">A proven, standardized protocol that stimulates the brain’s mood centers. A well-established option for depression.</p>
+                    </div>
+                    <div class="border-l-2 border-teal-400 pl-5">
+                        <p class="font-bold text-brand-950">MeRT</p>
+                        <p class="mt-2 leading-relaxed text-slate-600">An evolution of TMS. Location, frequency and intensity are tailored to your own qEEG brain map.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-slate-500">Not sure which fits? We’ll talk it through at your free consultation.</p>
+            </div>
+
+            <figure class="reveal flex flex-col justify-between rounded-[2rem] bg-teal-50 p-7 ring-1 ring-teal-200/60 sm:p-10 lg:col-span-5" data-anim="right">
+                <blockquote class="font-display text-xl leading-[1.4] text-brand-950 sm:text-2xl">“I believe TMS should be considered, in addition to pharmacotherapy and psychotherapy, as a first-line treatment for patients with moderate to severe major depressive disorder.”</blockquote>
+                <figcaption class="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+                    <span class="text-slate-600">Richard A. Bermudes · <cite class="not-italic">Psychiatric News</cite>, Oct 2022</span>
+                    <a href="https://novarahc.com/research/" class="font-bold text-brand-700 underline decoration-teal-300 decoration-2 underline-offset-4 hover:text-brand-900">See the research</a>
+                </figcaption>
+            </figure>
+        </div>
+
+        <p class="reveal mt-8 flex items-start gap-3 text-sm text-slate-500">
+            <svg class="mt-0.5 h-4 w-4 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+            <span>If you or someone you know is in crisis, call or text <a href="tel:988" class="font-bold text-brand-800 underline underline-offset-2">988</a> to reach the Suicide &amp; Crisis Lifeline, available 24/7.</span>
+        </p>
+    </div>
+</section>
+
 <!-- ===================== About ===================== -->
 <section id="about" class="relative overflow-hidden bg-sand-50 py-16 lg:py-24" aria-labelledby="about-title">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
         <!-- Intro statement -->
-        <div class="reveal flex flex-wrap items-center justify-between gap-4 border-b border-brand-900/10 pb-6 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-500">
+        <div class="reveal label-row flex flex-wrap items-center justify-between gap-4 pb-6 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-500">
             <p class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-teal-500" aria-hidden="true"></span>About Novara Healthcare</p>
             <p>Sugar Land, Texas &nbsp;·&nbsp; Opened May 2025</p>
         </div>
@@ -505,7 +681,7 @@ $schema = [
         <div class="mt-12 grid gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-16">
 
             <!-- Photo -->
-            <figure class="reveal relative lg:col-span-5">
+            <figure class="reveal relative lg:col-span-5" data-anim="wipe" data-parallax="0.05" style="--wipe:#faf8f4">
                 <div class="relative overflow-hidden rounded-[2rem]">
                     <img
                         src="https://novarahc.com/wp-content/uploads/2026/04/Autism-Asn-1024x707.jpg"
@@ -528,7 +704,7 @@ $schema = [
 
             <!-- Story + mission -->
             <div class="lg:col-span-7 lg:pt-4">
-                <div class="reveal max-w-2xl space-y-5 text-lg leading-relaxed text-slate-600">
+                <div class="reveal max-w-2xl space-y-5 text-lg leading-relaxed text-slate-600" data-anim="right">
                     <p class="first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-display first-letter:text-[4.5rem] first-letter:leading-[.8] first-letter:text-brand-700">
                         Inspired by our own family’s journey, we founded Novara Healthcare to bring groundbreaking, EEG-guided <strong class="font-semibold text-brand-950">MeRT and TMS therapy</strong> to families in Houston, Sugar Land and beyond, in partnership with the Brain Treatment Center.
                     </p>
@@ -554,7 +730,7 @@ $schema = [
         </div>
 
         <!-- People + partners -->
-        <div class="reveal mt-14 grid overflow-hidden rounded-[2rem] bg-white ring-1 ring-brand-900/5 lg:grid-cols-12">
+        <div class="reveal mt-14 grid overflow-hidden rounded-[2rem] bg-white ring-1 ring-brand-900/5 lg:grid-cols-12" data-anim="zoom">
             <div class="p-8 sm:p-10 lg:col-span-5">
                 <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-500">The people you’ll meet</p>
                 <ul class="mt-6 space-y-5">
@@ -598,7 +774,7 @@ $schema = [
 <!-- ===================== Services ===================== -->
 <section id="services" class="bg-white py-16 lg:py-24" aria-labelledby="services-title">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <?php section_label('Healthcare Services', 'MeRT · TMS · Autism Clinic'); ?>
+        <?php section_label('Healthcare Services', 'TMS · MeRT · Autism Clinic'); ?>
 
         <div class="mt-12 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <h2 id="services-title" class="reveal max-w-3xl text-balance font-display text-[2.6rem] font-normal leading-[1.04] tracking-[-0.02em] text-brand-950 sm:text-6xl">
@@ -614,7 +790,7 @@ $schema = [
 
         <div class="mt-14 grid gap-4 sm:gap-5 lg:grid-cols-12 lg:grid-rows-2">
             <?php foreach ($services as $i => $s): $big = $i === 0; ?>
-            <a href="<?= e($s['href']) ?>" class="reveal group relative isolate flex overflow-hidden rounded-[2rem] <?= $big ? 'min-h-[460px] lg:col-span-7 lg:row-span-2 lg:min-h-[640px]' : 'min-h-[340px] lg:col-span-5' ?>" style="transition-delay: <?= $i * 80 ?>ms">
+            <a href="<?= e($s['href']) ?>" data-anim="wipe" class="reveal group relative isolate flex overflow-hidden rounded-[2rem] <?= $big ? 'min-h-[460px] lg:col-span-7 lg:row-span-2 lg:min-h-[640px]' : 'min-h-[340px] lg:col-span-5' ?>" style="transition-delay: <?= $i * 80 ?>ms">
                 <img src="<?= e($s['img']) ?>" srcset="<?= e($s['srcset']) ?>" sizes="(min-width: 1024px) <?= $big ? '55vw' : '40vw' ?>, 100vw" alt="<?= e($s['alt']) ?>" width="1024" height="683" loading="lazy" decoding="async" class="absolute inset-0 -z-20 h-full w-full object-cover transition duration-[1.2s] ease-out group-hover:scale-105" style="object-position: <?= e($s['pos']) ?>">
                 <div class="absolute inset-0 -z-10 bg-gradient-to-t from-brand-950/90 via-brand-950/35 to-brand-950/0 transition duration-500 group-hover:from-brand-950/95 group-hover:via-brand-950/50" aria-hidden="true"></div>
 
@@ -662,7 +838,7 @@ $schema = [
                 </a>
             </div>
 
-            <div class="reveal lg:col-span-6">
+            <div class="reveal lg:col-span-6" data-anim="right">
                 <div class="rounded-[2rem] bg-white/[.04] p-6 ring-1 ring-white/10 sm:p-10">
                     <div class="flex items-center justify-between">
                         <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-teal-300">Treatment at a glance</p>
@@ -698,7 +874,7 @@ $schema = [
 <!-- ===================== Featured on TV ===================== -->
 <section class="bg-sand-50 py-16 lg:py-24" aria-labelledby="tv-title">
     <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16">
-        <div class="reveal lg:col-span-5">
+        <div class="reveal lg:col-span-5" data-anim="left">
             <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-teal-600">As seen on TV</p>
             <h2 id="tv-title" class="mt-5 text-balance font-display text-4xl font-normal leading-[1.08] tracking-[-0.01em] text-brand-950 sm:text-5xl">
                 <em class="text-brand-600">“The Doctors”</em> on MeRT as a brain treatment for autism
@@ -706,7 +882,7 @@ $schema = [
             <p class="mt-6 text-lg leading-relaxed text-slate-600">Neurologist Dr. Spencer O. Miller, who has worked with MeRT for autism for several years, was interviewed alongside a mother who shares her child’s experience with MeRT treatment.</p>
             <a href="https://novarahc.com/video-resources/" class="mt-8 inline-flex items-center gap-2 font-bold text-brand-700 underline decoration-teal-300 decoration-2 underline-offset-8 hover:text-brand-900">More video resources</a>
         </div>
-        <div class="reveal lg:col-span-7">
+        <div class="reveal lg:col-span-7" data-anim="zoom">
             <div class="relative aspect-video overflow-hidden rounded-[2rem] bg-brand-950 shadow-soft">
                 <button type="button" data-yt="rj8oVwvnZ6E" data-title="The Doctors: MeRT as a brain treatment for autism" class="group absolute inset-0 h-full w-full" aria-label="Play video: The Doctors feature on MeRT for autism">
                     <img src="https://novarahc.com/wp-content/uploads/2026/03/video_00.png" alt="" width="1162" height="576" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
@@ -742,7 +918,7 @@ $schema = [
                 <span class="absolute bottom-10 left-[1.65rem] top-10 w-px bg-gradient-to-b from-teal-400 via-brand-200 to-transparent sm:left-[2.15rem]" aria-hidden="true"></span>
                 <?php $meta = ['No obligation', 'Painless & non-invasive', 'Typically 5 days a week', 'Ongoing partnership']; ?>
                 <?php foreach ($steps as $i => [$t, $d]): ?>
-                <li class="reveal relative grid grid-cols-[3.5rem_1fr] gap-5 pb-12 last:pb-0 sm:grid-cols-[4.5rem_1fr] sm:gap-8">
+                <li data-anim="right" class="reveal relative grid grid-cols-[3.5rem_1fr] gap-5 pb-12 last:pb-0 sm:grid-cols-[4.5rem_1fr] sm:gap-8">
                     <span class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white font-display text-xl text-brand-800 ring-1 ring-brand-900/10 sm:h-[4.3rem] sm:w-[4.3rem] sm:text-2xl"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></span>
                     <div class="rounded-[1.75rem] bg-sand-50 p-6 ring-1 ring-brand-900/5 transition duration-300 hover:bg-white hover:shadow-soft sm:p-8">
                         <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-600"><?= e($meta[$i]) ?></p>
@@ -1107,11 +1283,33 @@ $schema = [
         new IntersectionObserver(([en]) => en.isIntersecting ? play() : stop(), { threshold: 0.5 }).observe(track);
     }
 
-    // Reveal on scroll
+    // Reveal on scroll (children of [data-stagger] enter one after another)
+    document.querySelectorAll('[data-stagger]').forEach(group => {
+        group.querySelectorAll(':scope > .reveal, :scope > li > .reveal').forEach((el, i) => {
+            if (!el.style.transitionDelay) el.style.transitionDelay = (i * 110) + 'ms';
+        });
+    });
     const io = new IntersectionObserver((entries) => {
         entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Gentle parallax on a few large visuals
+    const parallax = [...document.querySelectorAll('[data-parallax]')];
+    if (parallax.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let ticking = false;
+        const move = () => {
+            const vh = window.innerHeight;
+            parallax.forEach(el => {
+                const r = el.getBoundingClientRect();
+                if (r.bottom < 0 || r.top > vh || !el.classList.contains('is-visible')) return;
+                const offset = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.parallax);
+                el.style.translate = '0 ' + (-offset).toFixed(1) + 'px';
+            });
+            ticking = false;
+        };
+        window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(move); } }, { passive: true });
+    }
 </script>
 </body>
 </html>
