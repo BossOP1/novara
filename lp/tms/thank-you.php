@@ -16,7 +16,7 @@ if (!$isStatic && ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
     if ($field('website') === '' && $name !== '' && $phone !== '' && $email) {
         $body = '';
-        foreach (['name','phone','email','interest','call_time','consent','form_location','utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid'] as $k) {
+        foreach (['name','phone','email','for_whom','timeline','consent','utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid'] as $k) {
             $body .= str_pad($k . ':', 16) . $field($k) . "\n";
         }
         $sent = @mail($lp['email'], 'New TMS landing page enquiry: ' . $name, $body,
@@ -42,7 +42,7 @@ lp_head($lp, 'Thank you | Novara Healthcare Sugar Land', 'Thanks for contacting 
         <p class="hero-in mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600 [animation-delay:.16s]">A member of our Sugar Land team will call you back during clinic hours (<?= e($lp['hours']) ?>) to answer your questions and talk through next steps.</p>
         <?php else: ?>
         <h1 class="hero-in font-display text-5xl leading-[1.05] text-brand-950">Sorry, something went wrong.</h1>
-        <p class="hero-in mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600">We couldn’t send your enquiry. Please call us directly and we’ll be glad to help.</p>
+        <p class="hero-in mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600">We couldn’t send your enquiry. Please email us at <a href="mailto:<?= e($lp['email']) ?>" class="font-bold text-brand-700 underline"><?= e($lp['email']) ?></a> and we’ll be glad to help.</p>
         <?php endif; ?>
 
         <div class="hero-in mt-12 grid gap-4 text-left [animation-delay:.24s] sm:grid-cols-3">
@@ -60,7 +60,6 @@ lp_head($lp, 'Thank you | Novara Healthcare Sugar Land', 'Thanks for contacting 
         </div>
 
         <div class="hero-in mt-12 flex flex-col items-center justify-center gap-3 [animation-delay:.32s] sm:flex-row">
-            <a href="tel:<?= e($lp['phone_raw']) ?>" data-track="call_click" class="inline-flex items-center justify-center rounded-full bg-brand-700 px-7 py-4 font-extrabold text-white shadow-lg shadow-brand-700/25 transition hover:bg-brand-800">Can’t wait? Call <?= e($lp['phone']) ?></a>
             <a href="https://novarahc.com/healthcare-services/tms-therapy/" class="inline-flex items-center justify-center px-5 py-4 font-bold text-brand-700 underline decoration-teal-300 decoration-2 underline-offset-8">Read more about TMS</a>
         </div>
     </div>
@@ -73,9 +72,6 @@ lp_head($lp, 'Thank you | Novara Healthcare Sugar Land', 'Thanks for contacting 
 <?php if ($sent): ?>
 (window.dataLayer = window.dataLayer || []).push({ event: 'lp_lead', lead_source: 'tms-lp-sugar-land' });
 <?php endif; ?>
-document.querySelectorAll('[data-track="call_click"]').forEach(function (a) {
-    a.addEventListener('click', function () { (window.dataLayer = window.dataLayer || []).push({ event: 'lp_call_click' }); });
-});
 </script>
 </body>
 </html>

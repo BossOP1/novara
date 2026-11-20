@@ -44,8 +44,8 @@ mkdir($dist, 0755, true);
 /* ---------- Render pages ---------- */
 $pages = [
     'index.php'                   => 'index.html',
-    'assets/lp/tms/index.php'     => 'lp/tms/index.html',
-    'assets/lp/tms/thank-you.php' => 'lp/tms/thank-you/index.html',
+    'lp/tms/index.php'            => 'lp/tms/index.html',
+    'lp/tms/thank-you.php'        => 'lp/tms/thank-you/index.html',
 ];
 
 foreach ($pages as $src => $dest) {
@@ -95,6 +95,10 @@ function copy_dir(string $from, string $to): int {
 if (is_dir($root . '/assets')) {
     printf("✓ Copied %d file(s) from /assets\n", copy_dir($root . '/assets', $dist . '/assets'));
 }
+// /lp → dist/lp (landing page images; PHP sources and briefs are skipped)
+if (is_dir($root . '/lp')) {
+    printf("✓ Copied %d file(s) from /lp\n", copy_dir($root . '/lp', $dist . '/lp'));
+}
 // /public → site root (favicons, verification files, etc.)
 if (is_dir($root . '/public')) {
     printf("✓ Copied %d file(s) from /public\n", copy_dir($root . '/public', $dist));
@@ -102,7 +106,7 @@ if (is_dir($root . '/public')) {
 
 // Fail the build if a local asset any page references is missing
 foreach ($pages as $dest) {
-    preg_match_all('#(?:src|poster|data-src|href)="/?(assets/[^"\s]+)"|[\s"](/assets/[^"\s,]+\.(?:jpe?g|png|webp|mp4|svg))#', file_get_contents($dist . '/' . $dest), $m);
+    preg_match_all('#(?:src|poster|data-src|href)="/?((?:assets|lp)/[^"\s]+\.(?:jpe?g|png|webp|mp4|svg|css|js|ico))"|[\s"](/(?:assets|lp)/[^"\s,]+\.(?:jpe?g|png|webp|mp4|svg))#', file_get_contents($dist . '/' . $dest), $m);
     foreach (array_unique(array_filter(array_merge($m[1], $m[2]))) as $asset) {
         if (!is_file($dist . '/' . ltrim($asset, '/'))) {
             fwrite(STDERR, "✗ Missing asset referenced by {$dest}: {$asset}\n");
